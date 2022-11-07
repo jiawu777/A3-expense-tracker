@@ -6,4 +6,11 @@ router.get('/new', (req, res) => {
     return res.render('new')
 })
 
+router.post('/new', (req, res) => {
+    const { name, date, amount, category } = req.body
+    return Record.create({ name, date, amount, category, userId })
+        .then(() => redirect('/'))
+        .catch(err => console.log(err))
+})
+
 module.exports = router
