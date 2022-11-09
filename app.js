@@ -13,12 +13,13 @@ require('./config/mongoose')
 app.use(express.static('public'))
 //setting body-parser
 app.use(express.urlencoded({ extended: true }))
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true
+}))
+
 app.use(routes)
-
-
-
-
-
 app.listen(PORT, () => {
     console.log(`app is running on http://localhost:${PORT}`)
 })
