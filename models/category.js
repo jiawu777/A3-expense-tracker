@@ -5,7 +5,7 @@ const categorySchema = new Schema({
         type: String,
         require: true
     },
-    id: {
+    categoryId: {
         type: Number,
         require: true
     },

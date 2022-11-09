@@ -1,5 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const session = require('express-session')
 const PORT = process.env.PORT || 3000
 const app = express()
 
@@ -10,13 +11,12 @@ require('./config/mongoose')
 
 //setting static files
 app.use(express.static('public'))
-app.use(routes)
 //setting body-parser
 app.use(express.urlencoded({ extended: true }))
+app.use(routes)
 
-app.get('/', (req, res) => {
-    res.render('index')
-})
+
+
 
 
 app.listen(PORT, () => {

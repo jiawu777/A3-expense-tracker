@@ -62,19 +62,16 @@ db.once('open', () => {
                     const userId = user._id
                     const records = recordIndex.map(index => {
                         const record = ({ ...SEED_RECORD[index], userId })
-                        console.log({ record })
+                        return record
                     })
                     return Record.create(records)
                 })
         })
-
-
     )
-
-
-
         .then(() => {
             console.log('Seed created!')
             process.exit()
         })
+        .catch(err => console.log(err))
+        .finally(() => db.close)
 })
