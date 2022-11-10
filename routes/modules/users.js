@@ -1,11 +1,18 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
+const passport = require('passport')
 const router = express.Router()
 const User = require('../../models/user')
 
 router.get('/login', (req, res) => {
     return res.render('login')
 })
+
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/users/login',
+    failureFlash: true
+}))
 
 router.get('/register', (req, res) => {
     return res.render('register')
@@ -36,4 +43,6 @@ router.post('/register', (req, res) => {
         .catch(err => console.log(err))
     //待寫flash
 })
+
+
 module.exports = router
