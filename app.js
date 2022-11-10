@@ -3,6 +3,8 @@ const exphbs = require('express-handlebars')
 const session = require('express-session')
 const flash = require('connect-flash')
 const methodOverride = require('method-override')
+//const { Authenticator } = require('./middleware/auth')
+
 const PORT = process.env.PORT || 3000
 const app = express()
 const usePassport = require('./config/passport')
