@@ -5,8 +5,11 @@ const records = require('./modules/records')
 const users = require('./modules/users')
 const home = require('./modules/home')
 
-router.use('/records', records)
+const { authenticator } = require('../middleware/auth')
+
 router.use('/users', users)
-router.use('/', home)
+router.use('/records', authenticator, records)
+
+router.use('/', authenticator, home)
 
 module.exports = router
