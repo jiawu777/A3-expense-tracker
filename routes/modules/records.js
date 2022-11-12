@@ -9,8 +9,9 @@ router.get('/new', (req, res) => {
 
 router.post('/new', (req, res) => {
     const { name, date, amount, categoryId } = req.body
+    const userId = req.user._id
     return Record.create({ name, date, amount, categoryId, userId })
-        .then(() => redirect('/'))
+        .then(() => res.redirect('/'))
         .catch(err => console.log(err))
 })
 
