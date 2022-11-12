@@ -29,25 +29,25 @@ const SEED_RECORD = [
         name: "早餐",
         date: Date.now(),
         amount: 100,
-        categoryId: 3
+        categoryIndex: 3
     },
     {
         name: "油錢",
         date: Date.now(),
         amount: 125,
-        categoryId: 1
+        categoryIndex: 1
     },
     {
         name: "戰鬥陀螺",
         date: Date.now(),
         amount: 500,
-        categoryId: 2
+        categoryIndex: 2
     },
     {
         name: "房貸",
         date: Date.now(),
         amount: 25000,
-        categoryId: 0
+        categoryIndex: 0
     }
 ]
 

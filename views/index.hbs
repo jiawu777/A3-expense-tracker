@@ -20,6 +20,18 @@
             <div id="totalAmount">
             </div>
 
+            //show records
+            <ul class="list-group list-group-horizontal">
+                {{#each record}}
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">{{this.name}}</li>
+
+
+
+                
+                <li class="list-group-item">A third item</li>
+            </ul>
+
             <div id="statement">
             </div>
             <a href="/records/new" class="btn btn-success">新增支出</a>
