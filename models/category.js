@@ -8,6 +8,10 @@ const categorySchema = new Schema({
     icon: {
         type: String,
         require: true
+    },
+    categoryId: {
+        type: Number,
+        require: true
     }
 })
 

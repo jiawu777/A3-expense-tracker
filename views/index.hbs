@@ -5,13 +5,13 @@
                 aria-expanded="false">
                 類別
             </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">全部顯示</a></li>
-                <li><a class="dropdown-item" href="#">家居物業</a></li>
-                <li><a class="dropdown-item" href="#">交通出行</a></li>
-                <li><a class="dropdown-item" href="#">休閒娛樂</a></li>
-                <li><a class="dropdown-item" href="#">餐飲食品</a></li>
-                <li><a class="dropdown-item" href="#">其他</a></li>
+            <ul class="dropdown-menu " id="category-selector" type="submit">
+                <li><a class="dropdown-item" href="#" data-set-category="all">全部顯示</a></li>
+                <li><a class="dropdown-item" href="#" data-set-category="0">家居物業</a></li>
+                <li><a class="dropdown-item" href="#" data-set-category="1">交通出行</a></li>
+                <li><a class="dropdown-item" href="#" data-set-category="2">休閒娛樂</a></li>
+                <li><a class="dropdown-item" href="#" data-set-category="3">餐飲食品</a></li>
+                <li><a class="dropdown-item" href="#" data-set-category="4">其他</a></li>
             </ul>
         </div>
 
@@ -19,19 +19,14 @@
             <span>總金額</span>
             <div id="totalAmount">
             </div>
-
-            //show records
+            {{#each records}}
             <ul class="list-group list-group-horizontal">
-                {{#each record}}
-                <li class="list-group-item">A second item</li>
+                <i src={{this.icon}}></i>
                 <li class="list-group-item">{{this.name}}</li>
-
-
-
-                
-                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">{{this.date}}</li>
+                <li class="list-group-item">{{this.amount}}</li>
             </ul>
-
+            {{/each}}
             <div id="statement">
             </div>
             <a href="/records/new" class="btn btn-success">新增支出</a>

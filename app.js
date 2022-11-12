@@ -30,6 +30,9 @@ app.use(session({
     saveUninitialized: true
 }))
 
+//set method-override
+app.use(methodOverride())
+
 //use Passport
 usePassport(app)
 
