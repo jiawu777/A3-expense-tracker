@@ -20,18 +20,24 @@
             <div id="totalAmount">
             </div>
             {{#each records}}
-            <ul class="list-group list-group-horizontal">
-                <i src={{this.icon}}></i>
-                <li class="list-group-item">{{this.name}}</li>
-                <li class="list-group-item">{{this.date}}</li>
-                <li class="list-group-item">{{this.amount}}</li>
-            </ul>
+            <div class="d-flex ">
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item" src={{this.icon}}></li>
+                    <li class="list-group-item">{{this.name}}</li>
+                    <li class="list-group-item">{{this.date}}</li>
+                    <li class="list-group-item">{{this.amount}}</li>
+                </ul>
+                <a href="./records/{{this._id}}" class="btn btn-outline-success">Edit</a>
+                <form action="./records/{{this._id}}?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-outline-danger">
+                        Delete
+                    </button>
+                </form>
+            </div>
             {{/each}}
             <div id="statement">
             </div>
             <a href="/records/new" class="btn btn-success">新增支出</a>
         </div>
     </div>
-
-
 </div>

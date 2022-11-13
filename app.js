@@ -31,7 +31,7 @@ app.use(session({
 }))
 
 //set method-override
-app.use(methodOverride())
+app.use(methodOverride('_method'))
 
 //use Passport
 usePassport(app)

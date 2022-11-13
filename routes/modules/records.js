@@ -15,4 +15,39 @@ router.post('/new', (req, res) => {
         .catch(err => console.log(err))
 })
 
+router.get('/:id', (req, res) => {
+    const userId = req.user._id
+    const _id = req.params.id
+    return Record.findOne({ _id, userId })
+        .lean()
+        .then((record) => res.render('edit', { record }))
+        .catch(err => { console.log(err) })
+})
+
+router.put('/:id', (req, res) => {
+    const userId = req.user._id
+    const _id = req.params.id
+    const { name, date, amount, categoryId } = req.body
+    return Record.findOne({ _id, userId })
+        .then((record) => {
+            record.name = name
+            record.date = date
+            record.amount = amount
+            record.categoryId = categoryId
+            return record.save()
+        })
+        .then(() => res.redirect('/'))
+        .catch(err => { console.log(err) })
+})
+
+router.delete('/:id', (req, res) => {
+    const userId = req.user._id
+    const _id = req.params.id
+    return Record.findOne({ _id, userId })
+        .then(record => record.remove())
+        .then(() => res.redirect('/'))
+        .catch(err => { console.log(err) })
+
+})
+
 module.exports = router
