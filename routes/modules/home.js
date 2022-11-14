@@ -19,7 +19,22 @@ router.get('/', (req, res) => {
 })
 
 router.post('/category', (req, res) => {
-
+    const categoryId = req.body.categoryId
+    const userId = req.user._id
+    if (categoryId < 0) {
+        return res.redirect('/')
+    }
+    Record.find({ userId, categoryId })
+        .lean()
+        .sort({ date: 'desc' })
+        .then(records => {
+            let totalAmount = 0
+            for (let i = 0; i < records.length; i++) {
+                totalAmount += records[i].amount
+            }
+            res.render('index', { records, totalAmount })
+        })
+        .catch(err => console.log(err))
 })
 
 module.exports = router

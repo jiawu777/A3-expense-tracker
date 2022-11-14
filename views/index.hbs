@@ -1,25 +1,30 @@
 <div class="d-flex justify-content-center align-items-center">
     <div class="row">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                類別
-            </button>
-            <ul class="dropdown-menu " id="category-selector" type="submit">
-                <li><a class="dropdown-item" href="#" data-set-category="all">全部顯示</a></li>
-                <li><a class="dropdown-item" href="#" data-set-category="0">家居物業</a></li>
-                <li><a class="dropdown-item" href="#" data-set-category="1">交通出行</a></li>
-                <li><a class="dropdown-item" href="#" data-set-category="2">休閒娛樂</a></li>
-                <li><a class="dropdown-item" href="#" data-set-category="3">餐飲食品</a></li>
-                <li><a class="dropdown-item" href="#" data-set-category="4">其他</a></li>
-            </ul>
-        </div>
+
+
+
+
 
         <div>
+
+            {{!--totalAmount--}}
             <span>總金額</span>
             <div id="totalAmount">
                 <h1>{{this.totalAmount}}</h1>
             </div>
+
+            {{!--select different category--}}
+            <form action="/category" method="POST">
+                <select class="form-select" id="inputGroupSelect01" name="categoryId" onchange="this.form.submit()">
+                    <option value="-1">全部類別</option>
+                    <option value="0">家居物業</option>
+                    <option value="1">交通出行</option>
+                    <option value="2">休閒娛樂</option>
+                    <option value="3">餐飲食品</option>
+                    <option value="4">其他</option>
+                </select>
+            </form>
+
             {{#each records}}
             <div class="d-flex ">
                 <ul class="list-group list-group-horizontal">
