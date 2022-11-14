@@ -13,7 +13,11 @@ if (process.nextTick.NODE_ENV !== 'production') {
 }
 
 const routes = require('./routes')
-app.engine('hbs', exphbs.engine({ defaultLayout: 'main', extname: '.hbs' }))
+app.engine('hbs', exphbs.engine({
+    defaultLayout: 'main', extname: '.hbs', helpers: {
+        
+    }
+}))
 app.set('view engine', 'hbs')
 require('./config/mongoose')
 

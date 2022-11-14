@@ -27,9 +27,9 @@
             </div>
             <div class="input-group mb-3">
 
-                <select class="form-select" id="inputGroupSelect01" name="categoryId" value="{{record.categoryId}}">
+                <select class="form-select" id="inputGroupSelect01" name="categoryId" value="record.categoryId">
                     <option selected>請選擇</option>
-                    <option value="0">家居物業</option>
+                    <option value="0" {{#if record.categoryId===0}}selected{{/if}}>家居物業</option>
                     <option value="1">交通出行</option>
                     <option value="2">休閒娛樂</option>
                     <option value="3">餐飲食品</option>

@@ -18,6 +18,7 @@
         <div>
             <span>總金額</span>
             <div id="totalAmount">
+                <h1>{{this.totalAmount}}</h1>
             </div>
             {{#each records}}
             <div class="d-flex ">
@@ -27,7 +28,7 @@
                     <li class="list-group-item">{{this.date}}</li>
                     <li class="list-group-item">{{this.amount}}</li>
                 </ul>
-                <a href="./records/{{this._id}}" class="btn btn-outline-success">Edit</a>
+                <a href="./records/{{this._id}}/edit" class="btn btn-outline-success">Edit</a>
                 <form action="./records/{{this._id}}?_method=DELETE" method="POST">
                     <button type="submit" class="btn btn-outline-danger">
                         Delete
