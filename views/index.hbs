@@ -1,49 +1,72 @@
-<div class="d-flex justify-content-center align-items-center">
-    <div class="row">
+<div class="container mt-5">
 
 
 
 
+    {{!--select different category--}}
+    <form action="/category" method="POST">
+        <select class="form-select" id="inputGroupSelect01" name="categoryId" onchange="this.form.submit()">
+            <option value="-1">全部類別</option>
+            <option value="0">家居物業</option>
+            <option value="1">交通出行</option>
+            <option value="2">休閒娛樂</option>
+            <option value="3">餐飲食品</option>
+            <option value="4">其他</option>
+        </select>
+    </form>
 
-        <div>
-
-            {{!--totalAmount--}}
-            <span>總金額</span>
-            <div id="totalAmount">
-                <h1>{{this.totalAmount}}</h1>
-            </div>
-
-            {{!--select different category--}}
-            <form action="/category" method="POST">
-                <select class="form-select" id="inputGroupSelect01" name="categoryId" onchange="this.form.submit()">
-                    <option value="-1">全部類別</option>
-                    <option value="0">家居物業</option>
-                    <option value="1">交通出行</option>
-                    <option value="2">休閒娛樂</option>
-                    <option value="3">餐飲食品</option>
-                    <option value="4">其他</option>
-                </select>
-            </form>
-
-            {{#each records}}
-            <div class="d-flex ">
-                <ul class="list-group list-group-horizontal">
-                    <li class="list-group-item" src={{this.icon}}></li>
-                    <li class="list-group-item">{{this.name}}</li>
-                    <li class="list-group-item">{{this.date}}</li>
-                    <li class="list-group-item">{{this.amount}}</li>
-                </ul>
-                <a href="./records/{{this._id}}/edit" class="btn btn-outline-success">Edit</a>
-                <form action="./records/{{this._id}}?_method=DELETE" method="POST">
-                    <button type="submit" class="btn btn-outline-danger">
-                        Delete
-                    </button>
-                </form>
-            </div>
-            {{/each}}
-            <div id="statement">
-            </div>
-            <a href="/records/new" class="btn btn-success">新增支出</a>
+    <div class="row text-center mt-3 mb-3">
+        {{!--totalAmount--}}
+        <span>總金額</span>
+        <div id="totalAmount">
+            <h1>{{this.totalAmount}}</h1>
         </div>
+
+        <div class="row mt-3 mb-3 inline">
+            <div class="col-lg-8 m-auto bg-light">
+                <div class="mb-2 rounded border">
+                    <ul class="list-group list-group-flush ">
+                        {{#each records}}
+                        <li
+                            class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
+
+
+                            {{!--Icon--}}
+                            {{!--Category Icon defined by hbs helper--}}
+                            <div>
+                                <i class="category-icon fa-solid {{categoryIcon this.categoryId}}"></i>
+                            </div>
+
+                            {{!--Name & date--}}
+                            <div>
+                                <h4>{{this.name}}</h4>
+                                <span>
+                                    {{!--Category Icon defined by hbs helper--}}
+                                    <small class="date text-muted">{{dateFormat this.date}}</small>
+                                </span>
+                            </div>
+
+                            {{!--Amount per record--}}
+                            <p class="fs-4">{{this.amount}}元</p>
+
+                            <a href="./records/{{this._id}}/edit">
+                                <button type="submit" class="btn btn-outline-dark">
+                                    Edit
+                                </button>
+                            </a>
+                            <form action="./records/{{this._id}}?_method=DELETE" method="POST">
+                                <button type="submit" class="btn btn-outline-danger">
+                                    Delete
+                                </button>
+                            </form>
+
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <a href="/records/new" class="btn btn-success">新增支出</a>
+
     </div>
 </div>

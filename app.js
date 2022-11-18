@@ -15,7 +15,24 @@ if (process.nextTick.NODE_ENV !== 'production') {
 const routes = require('./routes')
 app.engine('hbs', exphbs.engine({
     defaultLayout: 'main', extname: '.hbs', helpers: {
-        
+        dateFormat(date) {
+            return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`
+        },
+        categoryIcon(categoryId) {
+            switch (categoryId) {
+                case 0:
+                    return 'fa-house';
+                case 1:
+                    return 'fa-van-shuttle';
+                case 2:
+                    return 'fa-face-grin-beam';
+                case 3:
+                    return 'fa-utensils';
+                case 4:
+                    return 'fa-pen';
+            }
+
+        }
     }
 }))
 app.set('view engine', 'hbs')
