@@ -2,15 +2,13 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
-const dayjs = require('dayjs')
 
 router.get('/new', (req, res) => {
     return res.render('new')
 })
 
 router.post('/new', (req, res) => {
-    const { name, date, amount } = req.body
-    const categoryId = Number(req.body.categoryId)//把categoryId轉為數字
+    const { name, date, amount, categoryId } = req.body
     const userId = req.user._id
     return Record.create({ name, date, amount, categoryId, userId })
         .then(() => res.redirect('/'))
@@ -20,7 +18,7 @@ router.post('/new', (req, res) => {
 router.get('/:id/edit', (req, res) => {
     const userId = req.user._id
     const _id = req.params.id
-    return Record.findOne({ _id, userId })
+    return Promise.all([Record.findOne({ _id, userId })])
         .lean()
         .then((record) => res.render('edit', { record }))
         .catch(err => { console.log(err) })
@@ -35,7 +33,7 @@ router.put('/:id/edit', (req, res) => {
             record.name = name
             record.date = date
             record.amount = amount
-            record.categoryId = Number(categoryId)
+            record.categoryId = categoryId
             return record.save()
         })
         .then(() => res.redirect('/'))
@@ -46,9 +44,10 @@ router.delete('/:id', (req, res) => {
     const userId = req.user._id
     const _id = req.params.id
     return Record.findOne({ _id, userId })
-        .then((record) => record.remove())
+        .then(record => record.remove())
         .then(() => res.redirect('/'))
         .catch(err => { console.log(err) })
+
 })
 
 module.exports = router

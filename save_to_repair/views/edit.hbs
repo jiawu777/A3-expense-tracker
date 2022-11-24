@@ -1,4 +1,4 @@
-<form action="/records/{{record._id}}/edit?_method=PUT" method="post">
+<form action="/records/{{record._id}}?_method=PUT" method="post">
     <div class="row g-3 align-items-center mx-5">
         <div class="column">
             <div class="col-auto">
@@ -12,8 +12,7 @@
                 <label for="date" class="col-form-label">消費日期</label>
             </div>
             <div class="col-auto">
-                <input name="date" type="date" id="date" class="form-control" value="{{dateFormat record.date}}"
-                    required>
+                <input name="date" type="date" id="date" class="form-control" value="{{record.date}}" required>
             </div>
 
             <div class="col-auto">
@@ -29,11 +28,12 @@
             <div class="input-group mb-3">
 
                 <select class="form-select" id="inputGroupSelect01" name="categoryId" value="record.categoryId">
-                    <option value="0" {{#ifEqual record.categoryId 0}}selected{{/ifEqual}}>家居物業</option>
-                    <option value="1" {{#ifEqual record.categoryId 1}}selected{{/ifEqual}}>交通出行</option>
-                    <option value="2" {{#ifEqual record.categoryId 2}}selected{{/ifEqual}}>休閒娛樂</option>
-                    <option value="3" {{#ifEqual record.categoryId 3}}selected{{/ifEqual}}>餐飲食品</option>
-                    <option value="4" {{#ifEqual record.categoryId 4}}selected{{/ifEqual}}>其他</option>
+                    <option selected>請選擇</option>
+                    <option value="0" {{#if record.categoryId===0}}selected{{/if}}>家居物業</option>
+                    <option value="1">交通出行</option>
+                    <option value="2">休閒娛樂</option>
+                    <option value="3">餐飲食品</option>
+                    <option value="4">其他</option>
                 </select>
             </div>
 

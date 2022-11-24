@@ -15,10 +15,9 @@ if (process.nextTick.NODE_ENV !== 'production') {
 
 const routes = require('./routes')
 app.engine('hbs', exphbs.engine({
-    //因hbs判斷式支援有限，可自行以helper自定義擴充
     defaultLayout: 'main', extname: '.hbs', helpers: {
         dateFormat(date) {
-            return dayjs().format('YYYY-MM-DD')
+            return dayjs().format('{YYYY}MM-DDTHH:mm:ss SSS [Z] A')
         },
         categoryIcon(categoryId) {
             switch (categoryId) {
@@ -33,9 +32,7 @@ app.engine('hbs', exphbs.engine({
                 case 4:
                     return 'fa-pen';
             }
-        },
-        ifEqual(a, b, options) {
-            return (a === b ? options.fn(this) : options.inverse(this))
+
         }
     }
 }))
@@ -70,7 +67,6 @@ app.use((req, res, next) => {
     res.locals.user = req.user
     res.locals.success_msg = req.flash('success_msg')
     res.locals.warning_msg = req.flash('warning_msg')
-    res.locals.confirm_msg = req.flash('confirm_msg')
     res.locals.error = req.flash('error')
     next()
 })

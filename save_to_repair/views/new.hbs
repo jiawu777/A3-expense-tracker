@@ -1,0 +1,44 @@
+<form action="/records/new" method="post">
+    <div class="row g-3 align-items-center mx-5">
+        <div class="column">
+            <div class="col-auto">
+                <label for="name" class="col-form-label">名稱</label>
+            </div>
+            <div class="col-auto">
+                <input name="name" type="text" id="name" class="form-control" required>
+            </div>
+
+            <div class="col-auto">
+                <label for="date" class="col-form-label">消費日期</label>
+            </div>
+            <div class="col-auto">
+                <input name="date" type="date" id="date" class="form-control" required>
+            </div>
+
+            <div class="col-auto">
+                <label for="amount" class="col-form-label">消費金額</label>
+            </div>
+            <div class="col-auto">
+                <input name="amount" type="number" id="amount" class="form-control" required>
+            </div>
+
+            <div class="col-auto">
+                <label class="col-form-label" for="inputGroupSelect01">消費類別</label>
+            </div>
+            <div class="input-group mb-3">
+
+                <select class="form-select" id="inputGroupSelect01" name="categoryId">
+                    <option selected>請選擇</option>
+                    <option value="0" name="categoryId">家居物業</option>
+                    <option value="1" name="categoryId">交通出行</option>
+                    <option value="2" name="categoryId">休閒娛樂</option>
+                    <option value="3" name="categoryId">餐飲食品</option>
+                    <option value="4" name="categoryId">其他</option>
+                </select>
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-success">新增支出</button>
+    </div>
+
+</form>

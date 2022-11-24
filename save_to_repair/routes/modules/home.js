@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/category', (req, res) => {
-    const categoryId = Number(req.body.categoryId)
+    const categoryId = req.body.categoryId
     const userId = req.user._id
     if (categoryId < 0) {
         return res.redirect('/')
@@ -32,7 +32,7 @@ router.post('/category', (req, res) => {
             for (let i = 0; i < records.length; i++) {
                 totalAmount += records[i].amount
             }
-            res.render('index', { records, totalAmount, categoryId })
+            res.render('index', { records, totalAmount })
         })
         .catch(err => console.log(err))
 })
