@@ -1,11 +1,9 @@
-const db = require('../../config/mongoose')
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
+const db = require('../../config/mongoose')
 const User = require('../user')
 const Record = require('../record')
-const Category = require('../category')
-const bcrypt = require('bcryptjs')
 
 
 const SEED_USER = [
@@ -75,7 +73,7 @@ db.once('open', () => {
             process.exit()
         })
         .catch(err => console.log(err))
-        .finally(() => db.close)
+        .finally(() => db.close())
 })
 
 //這部分程式碼研究中

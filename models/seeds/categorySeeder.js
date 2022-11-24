@@ -1,9 +1,8 @@
-const db = require('../../config/mongoose')
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
+const db = require('../../config/mongoose')
 const Category = require('../category')
-
 const SEED_CATEGORY = [
     {
         name: '家居物業',
@@ -44,5 +43,5 @@ db.once('open', () => {
             process.exit()
         })
         .catch(err => console.log(err))
-        .finally(() => db.close)
+        .finally(() => db.close())
 })
